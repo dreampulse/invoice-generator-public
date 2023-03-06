@@ -24,3 +24,17 @@ export const projectTwo = (amount: number) => ({
   amountUnit: "PT",
   text,
 });
+
+export const footer = [
+  { left: "E-Mail:", right: "hello@gmail.com" },
+  { left: "Telefon:", right: "+49 123 456789" },
+  { left: "Steuernummer:", right: "1234/34344" },
+  { left: "USt.-IdNr.:", right: "DE4534534" },
+  { left: "Geschäftsführer:", right: "Jo Jo Jo Man" },
+  { left: "Bank:", right: "Deutsche Schwindler Bank" },
+  { left: "Kontoinhaber:", right: "Jo Jo Jo Man" },
+  { left: "BIC:", right: "BYLADEM1111" },
+  { left: "IBAN:", right: "DE2343243242342342343" },
+];
+
+export const billIssuer = ["Max Mustermann", "Superplazza 32", "89073 Ulm"];
