@@ -5,6 +5,8 @@ import { Document, Page, Text, View } from "@react-pdf/renderer";
 import type { Style } from "@react-pdf/types";
 import dayjs from "dayjs";
 
+import { billIssuer, footer } from "./constants";
+
 dayjs.locale("de");
 
 const formatEur = (price: number) =>
@@ -151,7 +153,10 @@ export const InvoiceDocument = ({
   const total = subTotal + vat;
 
   return (
-    <Document author="Max Mustermann" title={`Rechnung #${number}`}>
+    <Document
+      author={billIssuer.length > 0 ? billIssuer[0] : "Max Mustermann"}
+      title={`Rechnung #${number}`}
+    >
       <Page
         size="A4"
         style={{
@@ -205,7 +210,7 @@ export const InvoiceDocument = ({
                   marginBottom: "0.2cm",
                 }}
               >
-                Max Mustermann - Superplazza 32 - 89073 Ulm
+                {billIssuer.join(" - ")}
               </Text>
               {customer.map((line, index) => (
                 <Text
@@ -320,15 +325,9 @@ export const InvoiceDocument = ({
             justifyContent: "center",
           }}
         >
-          <FooterTuple left="E-Mail:" right="hello@gmail.com" />
-          <FooterTuple left="Telefon:" right="+49 123 456789" />
-          <FooterTuple left="Steuernummer:" right="1234/34344" />
-          <FooterTuple left="USt.-IdNr.:" right="DE4534534" />
-          <FooterTuple left="Geschäftsführer:" right="Jo Jo Jo Man" />
-          <FooterTuple left="Bank:" right="Deutsche Schwindler Bank" />
-          <FooterTuple left="Kontoinhaber:" right="Jo Jo Jo Man" />
-          <FooterTuple left="BIC:" right="BYLADEM1111" />
-          <FooterTuple left="IBAN:" right="DE2343243242342342343" />
+          {footer.map(({ left, right }, index) => (
+            <FooterTuple key={index} left={left} right={right} />
+          ))}
         </View>
       </Page>
     </Document>
